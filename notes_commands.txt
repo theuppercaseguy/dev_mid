@@ -158,7 +158,9 @@ date  "+%y %m %d %H %M %S" // year month day hour minute second
 ###############shell scripting######################################
 
 script 1 to edit the crontba from bash script.
-crontab -l | { cat; echo "0 0 0 0 0 some entry"; } | crontab -
+
+#!/bin/bash
+crontab -l | { cat; echo "1 * * * * ls -al /etc/ssh"; } | crontab -
 
 chmod +x your_bash_script.sh
 
