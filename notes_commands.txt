@@ -158,16 +158,7 @@ date  "+%y %m %d %H %M %S" // year month day hour minute second
 ###############shell scripting######################################
 
 script 1 to edit the crontba from bash script.
-
-CRON_JOB="0 3 * * * /path/to/my_cron_script.sh"
-TEMP_CRONTAB=$(mktemp)
-
-# Add your cron job to the temporary crontab file
-(crontab -l 2>/dev/null; echo "$CRON_JOB") | crontab -
-
-# Clean up the temporary file
-rm "$TEMP_CRONTAB 	//edit crontab from bash script
-
+crontab -l | { cat; echo "0 0 0 0 0 some entry"; } | crontab -
 
 chmod +x your_bash_script.sh
 
