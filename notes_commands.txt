@@ -169,6 +169,25 @@ chmod +x your_bash_script.sh
 
 
 ######################## Quiz Solution #########################################
+### question 3; create a sshkey and acces the server and create a file in it
+
+#!/bin/bash
+ssh-keygen -t rsa -f ~/etc/ssh/test_key -N ""
+grep PasswordAuthen* /etc/ssh/sshd_config  
+sudo sed -i 's|PasswordAuthentication yes|PasswordAuthentication no|' /etc/ssh/sshd_co> //replaces a string
+(
+cat <<- EOF
+Host server
+        Hostname 192.168.24.41
+        user ubuntu
+EOF
+) >> /etc/sshd_config
+
+ssh -t server << EOF
+mkdir filecreated.txt
+echo "hello world" >>filecreated.txt
+EOF
+
 
 ### Question-1
 #!/bin/bash
